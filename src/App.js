@@ -1,25 +1,49 @@
-import logo from './logo.svg';
 import './App.css';
+import { Button, Navbar, Container, Nav } from 'react-bootstrap';
+import { useState } from 'react';
+import data from './data.js';
 
 function App() {
-  return (
+
+
+  let [shoes] = useState(data)
+  
+   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+        <Navbar bg="dark" variant="dark">
+        <Container>
+          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Nav className="me-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#features">cart</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
+      <div className="container">
+        <div className='row'>
+          {
+            shoes.map( (i,index)=>{
+              return(
+                <Items key={index} title={shoes[index].title} price={shoes[index].price} />
+              )
+            })
+          }
+        </div>
+      </div>
     </div>
   );
+}
+
+
+function Items({title,price}){
+  return(
+    <div className='col-md-4'>
+      <img src={process.env.PUBLIC_URL + '/shoes1.jpg'} width="80%"/>
+      <h4>{title}</h4>
+      <p>{price}</p>
+  </div>
+  )
 }
 
 export default App;
