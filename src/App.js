@@ -23,9 +23,9 @@ function App() {
       <div className="container">
         <div className='row'>
           {
-            shoes.map( (i,index)=>{
+            shoes.map( (a,i)=>{
               return(
-                <Items key={index} title={shoes[index].title} price={shoes[index].price} />
+                <Items i={i+1} shoes={shoes[i]} />
               )
             })
           }
@@ -36,12 +36,12 @@ function App() {
 }
 
 
-function Items({title,price}){
+function Items(props){
   return(
     <div className='col-md-4'>
-      <img src={process.env.PUBLIC_URL + '/shoes1.jpg'} width="80%"/>
-      <h4>{title}</h4>
-      <p>{price}</p>
+      <img src={process.env.PUBLIC_URL + '/shoes'+(props.i)+'.jpg'} width="80%"/>
+      <h4>{props.shoes.title}</h4>
+      <p>{props.shoes.price}</p>
   </div>
   )
 }
