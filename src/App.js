@@ -8,9 +8,10 @@ import axios from 'axios';
 
 
 function App() {
-  
+
   let [shoes,setShoes] = useState(data)
   let navigate = useNavigate();
+  let [clickCount,setClickCount] = useState(1);
 
    return (
     <div className="App">
@@ -36,8 +37,10 @@ function App() {
                     <Items i={i+1} shoes={shoes[i]} key={i} />
                   )
                 })}
-
                 <button onClick={()=>{
+                  let clickNum = ++clickCount;
+                  setClickCount(clickNum);
+                  console.log(clickCount);
                   axios.get('https://codingapple1.github.io/shop/data2.json')
                   .then(
                     (결과)=>{
@@ -71,7 +74,6 @@ function About(){
   )
 }
 
-
 function EventPage(){
   return(
     <div>
@@ -80,7 +82,6 @@ function EventPage(){
     </div>
   )
 }
-
 
 function Items(props){
   return(
